@@ -1,4 +1,4 @@
-# Typora 画图
+# Typora Mermaid
 
 类图、流程图、时序图
 
