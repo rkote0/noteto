@@ -43,11 +43,11 @@ stateDiagram
     ldap --> overlays
     overlays --> dev
     dev --> patchs
-    patchs --> configmap.yaml
-    patchs --> ....
-    dev --> kustomization.yaml
+    patchs --> configmap
+    patchs --> 。。。。
+    dev --> kustomization
     overlays --> prod
-    overlays --> ...
+    overlays --> 。。。
     
 ```
 
