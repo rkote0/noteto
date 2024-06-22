@@ -52,6 +52,19 @@ trap 命令用于指定在接受到信号后将要采取的行动，信号的相
 
 trap 命令的参数分为两部分，前一部分是接收到指定信号时要采取的行动，后一部分是要处理的信号名。
 
+```
+“信号” 常用的有以下几个。
+
+HUP：编号1，脚本与所在的终端脱离联系。
+INT：编号2，用户按下 Ctrl + C，意图让脚本终止运行。
+QUIT：编号3，用户按下 Ctrl + 斜杠，意图退出脚本。
+KILL：编号9，该信号用于杀死进程。
+TERM：编号15，这是kill命令发出的默认信号。
+EXIT：编号0，这不是系统信号，而是 Bash 脚本特有的信号，不管什么情况，只要退出脚本就会产生。
+```
+
+
+
 trap命令的使用语法如下:
 
 ```bash
@@ -67,7 +80,7 @@ trap '命令;命令' 信号编号
 或者
 
 ```bash
-trap '命令;命令' 信号名
+trap '命令;命令' 信号名 信号名
 ```
 
 ### 控制单个信号
@@ -106,3 +119,22 @@ $ trap ':' 1 2 3 20 15        # 该命令即可恢复指定信号
 $ trap -p SIGINT SIGTERM
 ```
 
+### trap 触发多个信号
+
+```bash
+function egress {
+	command1
+	commadn2
+	command3
+}
+
+trap egress EXIt
+```
+
+ 
+
+
+
+参考链接：
+
+- https://www.putorius.net/mktemp-working-with-temporary-files.html
