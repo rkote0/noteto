@@ -10,11 +10,13 @@
 
 **日志级别**	
 
-- DEBUG: debug级别用来记录详细的信息，方便定位问题进行调试，在生产环境我们一般不开启DEBUG
-- INFO: 用来记录关键代码点的信息，以便代码是否按照我们预期的执行，生产环境通常会设置INFO级别
-- WARNING: 记录某些不预期发生的情况，如磁盘不足
-- ERROR: 由于一个更严重的问题导致某些功能不能正常运行时记录的信息
-- CRITICAL: 当发生严重错误，导致应用程序不能继续运行时记录的信息
+| 日志级别 | 功能               | 描述                                                         |
+| :------- | :----------------- | ------------------------------------------------------------ |
+| DEBUG    | logging.debug()    | Provides detailed information that’s valuable to you as a developer. |
+| INFO     | logging.info()     | Provides general information about what’s going on with your program. |
+| WARNING  | Logging.warning()  | Indicates that there’s something you should look into.       |
+| ERROR    | Logging.error()    | Alerts you to an unexpected problem that’s occured in your program. |
+| CRITICAL | Logging.critical() | Tells you that a serious error has occurred and may have crashed your app. |
 
 
 
@@ -34,7 +36,7 @@
 
 ```python
 import logging
-logging.basicConfig( level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 logging.debug("this is debug")
 logging.info("this is info")
 logging.error("this is error")
@@ -48,15 +50,24 @@ logging.error("this is error")
 
 ```python
 import logging
-logging.basicConfig(filename="test.log", level=logging.INFO)
+logging.basicConfig(
+  				filename="test.log", 
+  				level=logging.INFO,
+					encoding="utf-8",
+					filemode="a",
+					format="{asctime} - {levelname} - {message}",
+        	style="{",
+        	datefmt="%Y-%m-%d %H:%M")
 logging.debug("this is debug")
 logging.info("this is info")
 logging.error("this is error")
 ```
 
-### 如何指定日志记录格式
+### 格式化输出
 
-默认输出的格式包含3部分，日志级别、日志记录器的名字、以及日志内容，中间用“:”连接。 如果我们想改变日志格式，例如想加入日期时间、显示日志器名字，我们是可以用`format`参数来设置日志的格式
+默认输出的格式包含3部分，日志级别、日志记录器的名字、以及日志内容，中间用“:”连接。 如果我们想改变日志格式，例如想加入日期时间、显示日志器名字，我们是可以用`format`参数来设置日志的格式。
+
+该`format`参数接受一个字符串，该字符串可以包含许多[预定义属性](https://docs.python.org/3/library/logging.html#logrecord-attributes)。
 
 ```python
 import logging
@@ -66,9 +77,7 @@ logging.error("this is error")
 
 ![image-20240715233110548](assets/image-20240715233110548.png)
 
-日志格式化输出提供了非常多的参数，除了时间、日志级别、日志消息内容、日志记录器的名字个外，还可以指定线程名，进程名，日志记录所在行号等等。
-
-![image-20240715233136504](assets/image-20240715233136504.png)
+![image-20240723105912031](assets/image-20240723105912031.png)
 
 ## 记录器（logger）
 
@@ -76,3 +85,13 @@ logging.error("this is error")
 
 记录器像树结构一样支持层级，子记录器可以不单独设置日志级别以及Handler（后面会介绍），如果子记录器没有单独设置，则它的所有行为会委托给父级。
 
+
+
+
+
+
+
+参考链接：
+
+- https://docs.python.org/3/library/logging.html#logrecord-attributes
+- https://realpython.com/python-logging/
