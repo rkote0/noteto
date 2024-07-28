@@ -44,3 +44,5 @@ pipx 安装的应用程序的默认二进制位置是`~/.local/bin`。这可以�
 **文档**：[https://pipx.pypa.io](https://pipx.pypa.io/)
 
 **源代码**：https://github.com/pypa/pipx
+
+如何建立一个完美的 Python 项目：https://sourcery.ai/blog/python-best-practices/
